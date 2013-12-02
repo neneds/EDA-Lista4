@@ -79,6 +79,7 @@ void pesquisaOrdemSimetrica(noCod *raiz){
             
         pesquisaOrdemSimetrica(raiz->esq);
         printf("%d\n",raiz->valor);
+        printf("Posicao no FTell %ld\n",raiz->posicao);
         pesquisaOrdemSimetrica(raiz->dir);
 }
 

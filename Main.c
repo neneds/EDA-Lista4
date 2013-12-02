@@ -6,6 +6,42 @@
 #include "tratamento.h"
 #include "arvore_abp.c"
 
+//Mostrar dados no arquivo
+void mostrar(long int posicaoPesq,FILE *arqTex){
+	char bufferLeitura[500];
+	
+	rewind(arqTex);
+	fseek(arqTex,posicaoPesq,0);
+	fgets(bufferLeitura,500,arqTex);
+	printf("\n\nDados encontrados:\n\n");
+	printf("\n\n\%s\n\n",bufferLeitura);
+	system("pause");
+	return;
+}
+
+
+//Funcao para pesquisa por codigo
+long int pesquisaCod(noCod *raiz){
+    //Declaração de variaveis
+    long int posicaoPesq=0;
+    int codPesq=0;
+    
+	printf("\nDigite o código a ser pesquisado:\n\n");
+    scanf("%d",&codPesq);
+	
+	if(raiz == NULL){
+          return;	
+        }
+            
+        pesquisaOrdemSimetrica(raiz->esq);
+        if(raiz->valor==codPesq){
+        	posicaoPesq=raiz->posicao;
+        }
+        pesquisaOrdemSimetrica(raiz->dir);
+        
+        return(posicaoPesq);
+}
+
 main () {
 	
 	//Para fazer a janela do DOS ficar Fullscreen
@@ -76,14 +112,44 @@ main () {
 	    printf("\n Código:%d\tCurso: %s\tPrédio: %d\n",cursos.codigo,cursos.curso,cursos.predio);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
+	pesquisaOrdemSimetrica(raizCod);
     system("pause");
     system("cls");
-    pesquisaOrdemSimetrica(raizCod);
-	
-	system("pause");
+//______________________________________________Função para o menu de opções
+//Declaração de variaveis
+int opcao=0;
+long int posicaoPesq=0;
+
+	while (opcao!=4){
+		system("cls");
+	    printf("\n================================Menu de consulta=============================\n\n");
+		opcao=menu_opcoes();
+	    system ("cls");
+	       switch (opcao){
+	       	  case 1:{
+	       	  	 posicaoPesq=pesquisaCod(raizCod);
+	       	  	 if(posicaoPesq!=0){
+	       	  	 	mostrar(posicaoPesq,arqTex);
+	       	  	 }
+	       	  	 
+	       	  	 break;
+	       	  }
+	       	  case 2:{
+	       	  	 // MunNome(TotalMun,indexNomeMun,arqMun,TotEstCod);
+	       	  	 break;
+	       	  }
+	       	  case 3:{
+                 //ProcNumMunEst(arqMun,arqEst,indEstCnpj,indEstCod,TotalMun,TotEstCod,TotEstCnpj);
+	       	  	break;
+	       	  }
+			  
+			case -1:{
+			  	break;
+			  }
+		  }
+	 }
+//Fim do menu
+    printf("\n\n\nFim do programa!!!\n\n");
+    system("pause");
 	fclose(arqTex);
-    
-    
-    
-	
 }
