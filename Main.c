@@ -21,25 +21,23 @@ void mostrar(long int posicaoPesq,FILE *arqTex){
 
 
 //Funcao para pesquisa por codigo
-long int pesquisaCod(noCod *raiz){
+void pesquisaCod(noCod *raizCod,FILE *arqTex){
     //Declaração de variaveis
     long int posicaoPesq=0;
     int codPesq=0;
+    noCod *resultado;
     
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
-	
-	if(raiz == NULL){
-          return;	
-        }
-            
-        pesquisaOrdemSimetrica(raiz->esq);
-        if(raiz->valor==codPesq){
-        	posicaoPesq=raiz->posicao;
-        }
-        pesquisaOrdemSimetrica(raiz->dir);
-        
-        return(posicaoPesq);
+    resultado=busca(raizCod,codPesq);
+    if(resultado!=NULL){
+    printf("\nCódigo encontrado! %d\n",resultado->valor);
+    printf("\nPosição no Ftell %ld\n",resultado->posicao);
+    system("pause");
+    //Mostrar dados da pesquisa
+    mostrar(resultado->posicao,arqTex);	
+    }
+    
 }
 
 main () {
@@ -112,13 +110,15 @@ main () {
 	    printf("\n Código:%d\tCurso: %s\tPrédio: %d\n",cursos.codigo,cursos.curso,cursos.predio);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
-	pesquisaOrdemSimetrica(raizCod);
     system("pause");
     system("cls");
+	
+    
 //______________________________________________Função para o menu de opções
 //Declaração de variaveis
+
 int opcao=0;
-long int posicaoPesq=0;
+
 
 	while (opcao!=4){
 		system("cls");
@@ -127,11 +127,7 @@ long int posicaoPesq=0;
 	    system ("cls");
 	       switch (opcao){
 	       	  case 1:{
-	       	  	 posicaoPesq=pesquisaCod(raizCod);
-	       	  	 if(posicaoPesq!=0){
-	       	  	 	mostrar(posicaoPesq,arqTex);
-	       	  	 }
-	       	  	 
+	       	     pesquisaCod(raizCod,arqTex);
 	       	  	 break;
 	       	  }
 	       	  case 2:{
@@ -149,6 +145,7 @@ long int posicaoPesq=0;
 		  }
 	 }
 //Fim do menu
+
     printf("\n\n\nFim do programa!!!\n\n");
     system("pause");
 	fclose(arqTex);
