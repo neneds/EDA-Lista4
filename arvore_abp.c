@@ -69,29 +69,29 @@ void removerNo(noCod **raiz,int elemento)
             free(aux);
         }
 }
-/*/
-void pesquisaCod(noCod *raiz){
 
+void mostraCod(noCod *raiz){
+  int comp=0;
 	
 	if(raiz == NULL){
           return;	
         }
             
-        pesquisaCod(raiz->esq);
-        printf("%d\n",raiz->valor);
-        printf("Posicao no FTell %ld\n",raiz->posicao);
-        pesquisaCod(raiz->dir);
+        mostraCod(raiz->esq);
+        printf("\nCodigo do curso %d\n",raiz->valor);
+        //printf("Posicao no FTell %ld\n",raiz->posicao);
+        mostraCod(raiz->dir);
 }
-/*/
+
 noCod* busca(noCod *raiz, int codigo){
      //Nó auxiliar para a pesquisa
     noCod *auxiliar;
 	auxiliar=raiz;
+
 	
 	while (auxiliar) { 
-            
-      if (auxiliar->valor=codigo){ //Faz a comparação de strings
-	    return auxiliar;
+     if (auxiliar->valor==codigo){ //Faz a comparação de strings
+        return auxiliar;
 	  } 
             
        else
@@ -106,4 +106,86 @@ noCod* busca(noCod *raiz, int codigo){
     }
 }
 //__________________________________Fim da parte da árvore para codigo ______________________________________________________________________________________/*/
+//Estrutura dos nós para prédio
+typedef struct noPred{
+        struct noPred *esq;
+        struct noPred *dir;
+        int valorP;
+        long int posicaoPred;
+}noPred;
+ 
+//Procedimento para inserir nó
+void inserirNoPred(noPred **raizPred,int elementoPred,long int posicaoPred){//Recebe o ponteiro da raizPred e o elementoPred
+        //Se a raizPred é nula (Primeira vez que for inserir, ou a cada noPredvo elementoPred a inserir), 
+		if(*raizPred == NULL) {
+            noPred *aux = (noPred *)malloc(sizeof(noPred)); //A criação do auxiliar é para fazer as operações, para não usar a raizPred
+            aux->valorP = elementoPred;
+            aux->posicaoPred = posicaoPred;
+            aux->dir = aux->esq = NULL;  //Os nós da direita e da esquerda são nulos para permitir a inserção neles depois.
+            *raizPred = aux;  //A raizPred vira auxiliar;
+            printf("Prédio %d foi inserido com sucesso.\n",elementoPred);
+            return;
+        }
+       //Para inserir elementoPreds com uma raizPred não nula
+        if(elementoPred < (*raizPred)->valorP) {   //O elementoPred a inserir é menor que o valorP do elementoPred contido na raizPred?
+            inserirNoPred(&(*raizPred)->esq,elementoPred,posicaoPred);  //Recursividade vai alocar o nó a esquerda
+            return;
+        }
+        if(elementoPred > (*raizPred)->valorP) {//O elementoPred a inserir é maior que o valorP do elementoPred contido na raizPred?
+            inserirNoPred(&(*raizPred)->dir,elementoPred,posicaoPred);
+            return;
+        }
+        //Se o elementoPred já existir na arvore ele vai passar por todos os if's
+        printf("Prédio %d ja existe na arvore.\n",elementoPred);
+}
+ 
+noPred *DoisFilhosPred(noPred *root){
+            if(root==NULL) //É nulo
+                return NULL;
+            else if(root->esq == NULL) //A esquerda do subelementoPred é nula?
+                    return root;
+            else
+                return DoisFilhosPred(root->esq);
+}
+ 
+void removerNoPred(noPred **raizPred,int elementoPred)
+{
+        if(elementoPred < (*raizPred)->valorP){
+            removerNoPred(&(*raizPred)->esq,elementoPred);
+        }
+        else if(elementoPred > (*raizPred)->valorP){
+            removerNoPred(&(*raizPred)->dir,elementoPred);
+        }
+        else if((*raizPred)->esq!=NULL && (*raizPred)->dir!=NULL){//No caso de um nó ter subfilhos dos dois lados 
+            noPred *aux= NULL;
+            aux = DoisFilhosPred((*raizPred)->dir); //Chama o procedimento dois filhos e aux recebe o valorP de resultado
+            (*raizPred)->valorP = aux->valorP;   //Substitui o velor pelo valorP da var auxiliar
+            (*raizPred)->posicaoPred = aux->posicaoPred; 
+            removerNoPred(&(*raizPred)->dir,(*raizPred)->valorP); //Remove a raizPred
+        }
+        else {
+            noPred *aux = (*raizPred);
+            if((*raizPred)->esq==NULL) {
+                (*raizPred) = (*raizPred)->dir;
+            }
+            else {
+                *raizPred = (*raizPred)->esq;
+            }
+            free(aux);
+        }
+}
+
+void mostraPred(noPred *raizPred){
+  int comp=0;
+	
+	if(raizPred == NULL){
+          return;	
+        }
+            
+        mostraPred(raizPred->esq);
+        printf("\nPrédio do curso%d\n",raizPred->valorP);
+        //printf("posicaoPred no FTell %ld\n",raizPred->posicaoPred);
+        mostraPred(raizPred->dir);
+}
+
 

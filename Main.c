@@ -26,7 +26,7 @@ void pesquisaCod(noCod *raizCod,FILE *arqTex){
     long int posicaoPesq=0;
     int codPesq=0;
     noCod *resultado;
-    
+ 
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     resultado=busca(raizCod,codPesq);
@@ -42,24 +42,6 @@ void pesquisaCod(noCod *raizCod,FILE *arqTex){
 
 main () {
 	
-	//Para fazer a janela do DOS ficar Fullscreen
-/*/	
-	HWND hWnd;
-   SetConsoleTitle("Lista 4 - EDA");
-   hWnd = FindWindow(NULL, "Lista 4 - EDA");
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD NewSBSize = GetLargestConsoleWindowSize(hOut);
-    SMALL_RECT DisplayArea = {0, 0, 0, 0};
- 
-    SetConsoleScreenBufferSize(hOut, NewSBSize);
- 
-    DisplayArea.Right = NewSBSize.X - 1;
-    DisplayArea.Bottom = NewSBSize.Y - 1;
- 
-    SetConsoleWindowInfo(hOut, TRUE, &DisplayArea);
- 
-    ShowWindow(hWnd, SW_MAXIMIZE);
-/*/
     //Definir local para portugues para utilizar caracteres pt-br
     setlocale(LC_ALL,"Portuguese");
     
@@ -82,7 +64,7 @@ main () {
 	
 	//Criando variavel da arvore binaria
     noCod *raizCod = NULL;
-    //noNome *raizNome = NULL;
+    noPred *raizPred=NULL;
 	
 	//FilePointer para o arquivo de texto 
 	FILE *arqTex;
@@ -107,11 +89,14 @@ main () {
 	    strcpy(cursos.curso,strtok(NULL,";"));
 	    cursos.predio=atoi(strtok(NULL, ";")); 
 	    inserirNo(&raizCod,cursos.codigo,posicao);
-	    printf("\n Código:%d\tCurso: %s\tPrédio: %d\n",cursos.codigo,cursos.curso,cursos.predio);
+	    inserirNoPred(&raizPred,cursos.predio,posicao);
+	    printf("\nCódigo:%d\tCurso: %s\tPrédio: %d\n\n",cursos.codigo,cursos.curso,cursos.predio);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
     system("pause");
     system("cls");
+    mostraCod(raizCod);
+    system("pause");
 	
     
 //______________________________________________Função para o menu de opções
