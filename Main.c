@@ -6,24 +6,10 @@
 #include "tratamento.h"
 #include "arvore_abp.c"
 
-//Mostrar dados no arquivo
-void mostrar(long int posicaoPesq,FILE *arqTex){
-	char bufferLeitura[500];
-	
-	rewind(arqTex);
-	fseek(arqTex,posicaoPesq,0);
-	fgets(bufferLeitura,500,arqTex);
-	printf("\n\nDados encontrados:\n\n");
-	printf("\n\n\%s\n\n",bufferLeitura);
-	system("pause");
-	return;
-}
-
-
-//Funcao para pesquisa por codigo
+/*/
 void pesquisaCod(noCod *raizCod,FILE *arqTex){
     //Declaração de variaveis
-    long int posicaoPesq=0;
+    char bufferLeitura[500];
     int codPesq=0;
     noCod *resultado;
  
@@ -35,36 +21,38 @@ void pesquisaCod(noCod *raizCod,FILE *arqTex){
     printf("\nPosição no Ftell %ld\n",resultado->posicao);
     system("pause");
     //Mostrar dados da pesquisa
-    mostrar(resultado->posicao,arqTex);	
+    rewind(arqTex);
+	fseek(arqTex,resultado->posicao,0);
+	fgets(bufferLeitura,500,arqTex);
+	printf("\n\nDados encontrados:\n\n");
+	printf("\n\n\%s\n\n",bufferLeitura);
+	system("pause");
+	return;	
     }
-    
-}
+  
+}/*/
 
 main () {
 	
     //Definir local para portugues para utilizar caracteres pt-br
     setlocale(LC_ALL,"Portuguese");
     
-    //Struct para receber os dados do arquivo
-    typedef struct{
-    	int codigo;
-    	char curso[60];
-    	int predio;
-	}DadosTexto;
-	
-	//Variavel do tipo struct 
-	DadosTexto cursos;
 	
 	//Declaração de variaveis
 	char bufferLeitura[1000];
 	char nomeArq[60];
 	int TotalCursos=0;
 	long int posicao=0;
-	int op=0,cont=0;
+	int op=0;
+	char curso[60];
+	int codigo=0;
+	int predio=0;
 	
 	//Criando variavel da arvore binaria
-    noCod *raizCod = NULL;
-    noPred *raizPred=NULL;
+    no *raizCod = NULL;
+    no *raizNome=NULL;
+    no *raizPred=NULL;
+   
 	
 	//FilePointer para o arquivo de texto 
 	FILE *arqTex;
@@ -78,26 +66,33 @@ main () {
 	while(fgets(bufferLeitura,1000,arqTex) != NULL){
 		TotalCursos++;
 	}
+	//Alocando memoria 
 	printf("\nQuantidade de Cursos Lidos: %d\n\n\n",TotalCursos);
 	rewind(arqTex);
 	//Ler o arquivo e passar os dados para a struct
 	fgets(bufferLeitura,1000,arqTex);//Desprezar o cabeçalho
 	while(!feof(arqTex)){
 		fgets(bufferLeitura,1000,arqTex);
-		posicao=ftell(arqTex);
-		cursos.codigo=atoi(strtok(bufferLeitura, ";")); 
-	    strcpy(cursos.curso,strtok(NULL,";"));
-	    cursos.predio=atoi(strtok(NULL, ";")); 
-	    inserirNo(&raizCod,cursos.codigo,posicao);
-	    inserirNoPred(&raizPred,cursos.predio,posicao);
-	    printf("\nCódigo:%d\tCurso: %s\tPrédio: %d\n\n",cursos.codigo,cursos.curso,cursos.predio);
+		//posicao=ftell(arqTex);
+		codigo=atoi(strtok(bufferLeitura, ";")); 
+	    strcpy(curso,strtok(NULL,";"));
+	    predio=atoi(strtok(NULL, ";")); 
+	    inserirNo(&raizCod,codigo,curso,predio,1);
+	    inserirNo(&raizNome,codigo,curso,predio,2);
+	    inserirNo(&raizPred,codigo,curso,predio,3);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
     system("pause");
     system("cls");
-    mostraCod(raizCod);
+    pesquisaOrdemSimetrica(raizCod);
     system("pause");
-	
+    system("cls");
+    pesquisaOrdemSimetrica(raizNome);
+    system("pause");
+    system("cls");
+    pesquisaOrdemSimetrica(raizPred);
+	system("pause");
+    system("cls");
     
 //______________________________________________Função para o menu de opções
 //Declaração de variaveis
@@ -112,7 +107,7 @@ int opcao=0;
 	    system ("cls");
 	       switch (opcao){
 	       	  case 1:{
-	       	     pesquisaCod(raizCod,arqTex);
+	       	     //pesquisaCod(raizCod,arqTex);
 	       	  	 break;
 	       	  }
 	       	  case 2:{
@@ -132,6 +127,7 @@ int opcao=0;
 //Fim do menu
 
     printf("\n\n\nFim do programa!!!\n\n");
+    free(raizCod);
     system("pause");
 	fclose(arqTex);
 }
