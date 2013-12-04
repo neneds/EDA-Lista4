@@ -5,7 +5,7 @@
 typedef struct no{
         struct no *esq;
         struct no *dir;
-        int valor;
+        int valor;  //Codigo
         char nome[60];
         int predio;
 }no;
@@ -102,6 +102,28 @@ void removerNo(no **raiz,int elemento)
         }
 }
  
+no *busca(no *raiz,int codigo){
+	no *auxiliar;
+	auxiliar=raiz;
+        
+		if(auxiliar!=NULL){
+        	if(codigo==auxiliar->valor){
+        		return auxiliar;
+        	}else
+        	if(codigo<auxiliar->valor){
+        		return busca(auxiliar->esq,codigo);
+        	}
+        	else{
+        	  return busca(auxiliar->dir,codigo);	
+        	}
+        	
+        }
+        printf("\nCódigo não encontrado!!!\n\n");
+        getch();
+        return NULL;
+          
+}
+//Busca
 void pesquisaOrdemSimetrica(no *raiz)
 {
         if(raiz == NULL)
@@ -110,6 +132,5 @@ void pesquisaOrdemSimetrica(no *raiz)
         printf("%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
         pesquisaOrdemSimetrica(raiz->dir);
 }
- 
 
 

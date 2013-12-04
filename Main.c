@@ -6,31 +6,27 @@
 #include "tratamento.h"
 #include "arvore_abp.c"
 
-/*/
-void pesquisaCod(noCod *raizCod,FILE *arqTex){
+
+void pesquisaCod(no *raizCod){
     //Declaração de variaveis
     char bufferLeitura[500];
     int codPesq=0;
-    noCod *resultado;
+    no *resultado;
  
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     resultado=busca(raizCod,codPesq);
     if(resultado!=NULL){
     printf("\nCódigo encontrado! %d\n",resultado->valor);
-    printf("\nPosição no Ftell %ld\n",resultado->posicao);
     system("pause");
     //Mostrar dados da pesquisa
-    rewind(arqTex);
-	fseek(arqTex,resultado->posicao,0);
-	fgets(bufferLeitura,500,arqTex);
 	printf("\n\nDados encontrados:\n\n");
-	printf("\n\n\%s\n\n",bufferLeitura);
+	printf("\n%d\t%s\t%d\n",resultado->valor,resultado->nome,resultado->predio);
 	system("pause");
 	return;	
     }
   
-}/*/
+}
 
 main () {
 	
@@ -107,7 +103,7 @@ int opcao=0;
 	    system ("cls");
 	       switch (opcao){
 	       	  case 1:{
-	       	     //pesquisaCod(raizCod,arqTex);
+	       	     pesquisaCod(raizCod);
 	       	  	 break;
 	       	  }
 	       	  case 2:{
