@@ -106,8 +106,14 @@ int opcao=0;
 	             arqSaida=fopen(nomeCod,"w");
                  gravaArq(raizCod,arqSaida);
                  fclose(arqSaida);
-                 //gravaArq(raizNome,2);
-                 //gravaArq(raizPred,3);
+                 //Gravar arquivo ordenado por Nome
+                 arqSaida=fopen(nomeNome,"w");
+                 gravaArq(raizNome,arqSaida);
+                 fclose(arqSaida);
+                 //Gravar arquivo Ordenado por Predio
+                 arqSaida=fopen(nomePred,"w");
+                 gravaArq(raizPred,arqSaida);
+                 fclose(arqSaida);
                  break;
 	       	  }
 			  
