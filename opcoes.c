@@ -31,8 +31,8 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
     noPesq=busca(raizCod,codPesq);
     if(noPesq!=NULL){
       removerNo(&raizCod,codPesq);
-      removerNo(&raizNome,codPesq);
-      removerNo(&raizPred,codPesq);
+      //removerNo(&raizNome,codPesq);
+      //removerNo(&raizPred,codPesq);
       return;
     }
     else

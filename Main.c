@@ -22,6 +22,8 @@ main () {
 	int codigo=0;
 	int predio=0;
 	
+	
+	
 	//Criando variavel da arvore binaria
     no *raizCod = NULL;
     no *raizNome=NULL;
@@ -57,8 +59,10 @@ main () {
 	    inserirNo(&raizPred,codigo,curso,predio,3);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
+	fclose(arqTex);
     system("pause");
-    system("cls");
+    imprimirArvores(raizCod,raizNome,raizPred);
+    
     
     
 //______________________________________________Função para o menu de opções
@@ -82,7 +86,10 @@ int opcao=0;
 	       	  	 break;
 	       	  }
 	       	  case 3:{
-                 gravar(raizCod,raizNome,raizPred);
+	       	  	
+                 gravaArq(raizCod,1);
+                 gravaArq(raizNome,2);
+                 gravaArq(raizPred,3);
 	       	  	break;
 	       	  }
 			  
@@ -95,5 +102,4 @@ int opcao=0;
 
     printf("\n\n\nFim do programa!!!\n\n");
     system("pause");
-	fclose(arqTex);
 }

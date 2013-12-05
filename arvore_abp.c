@@ -20,7 +20,7 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
             aux->predio=predio;
             aux->dir = aux->esq = NULL;  //Os nós da direita e da esquerda são nulos para permitir a inserção neles depois.
             *raiz = aux;  //A raiz vira auxiliar;
-            printf("Elemento %d\t %s\t %d foi inserido com sucesso.\n",aux->valor,aux->nome,aux->predio);
+            //printf("Elemento %d\t %s\t %d foi inserido com sucesso.\n",aux->valor,aux->nome,aux->predio);
             return;
         }
        //Para inserir elementos com uma raiz não nula
@@ -123,31 +123,63 @@ no *busca(no *raiz,int codigo){
         return NULL;
           
 }
-//Pesquisa por ordem simetrica
-void mostrarGravarArq(no *raiz,FILE *arqSaida){
+//Mostrar arvore
+void mostrarArvore(no *raiz){
         if(raiz == NULL){
           return;	
         }
            
-        mostrarGravarArq(raiz->esq,arqSaida);
-        fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
-        mostrarGravarArq(raiz->dir,arqSaida);
+        mostrarArvore(raiz->esq);
+        printf("%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        mostrarArvore(raiz->dir);
 }
-//Gravar  o arquivo
-void gravar(no *raizCod,no *raizNome,no *raizPred){
-	//Declaração de variaveis
-	char nomeArquivo[50];
+
+//Procedimento para mostrar as árvores
+void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
+	
+	printf("\nArquivo ordenado por código\n\n");
+    mostrarArvore(raizCod);
+    getch();
+    system("cls");
+    printf("\nArquivo ordenado por Nome\n\n");
+    mostrarArvore(raizNome);
+    getch();
+    system("cls");
+    printf("\nArquivo ordenado por Prédio\n\n");
+    mostrarArvore(raizPred);
+    getch();
+    system("cls");
+    return;
+}
+//Grava a arvore no arquivo
+void gravaArq(no *raiz,int op3){
+	char nomeSalvar[60];
+	//Copiando os nomes para salvar os arquivos de acordo com o valor da variavel op3 passado
+	if(op3==1){
+	   strcpy(nomeSalvar,"Arquivo Ordenado por Codigo.txt");
+	}
+	 else if(op3==2){
+	 	strcpy(nomeSalvar,"Arquivo Ordenado por Nome.txt");
+	 }
+	 else if(op3==3){
+	 	strcpy(nomeSalvar,"Arquivo Ordenado por Predio.txt");
+	 }
 	
 	FILE *arqSaida;
-	arqSaida=fopen(nomeArquivo,"w");
-    strcpy(nomeArquivo,"Ordenado por Curso.txt");
-    mostrarGravarArq(raizCod,arqSaida);
-    strcpy(nomeArquivo,"Ordenado por Nome.txt");
-    mostrarGravarArq(raizNome,arqSaida);
-    strcpy(nomeArquivo,"Ordenado por Predio.txt");
-    mostrarGravarArq(raizPred,arqSaida);
-    fclose(arqSaida);
-    getch();
+	arqSaida=fopen(nomeSalvar,"w");
 		
+		if(raiz == NULL){
+          return;	
+        }
+           
+        gravaArq(raiz->esq,op3);
+        fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        gravaArq(raiz->dir,op3);
+        fclose(arqSaida);
+        if(arqSaida==NULL){
+        	 printf("\nArquivo %s Gravado\n\n",nomeSalvar);
+        }
 }
+
+
 
