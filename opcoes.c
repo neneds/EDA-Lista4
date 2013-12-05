@@ -24,15 +24,16 @@ void pesquisaCod(no *raizCod){
 void deletar(no *raizCod,no *raizNome,no *raizPred){
 	//Declaração de variaveis
     int codPesq=0;
-    no *noPesq;
+    no *noPesqCod;
  
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
-    noPesq=busca(raizCod,codPesq);
-    if(noPesq!=NULL){
+    noPesqCod=busca(raizCod,codPesq);
+    //noPesqPred=busca(raizCod,codPesq);
+    if(noPesqCod!=NULL){
       removerNo(&raizCod,codPesq);
       //removerNo(&raizNome,codPesq);
-      //removerNo(&raizPred,codPesq);
+      //removerNo(&raizPred,noPesqCod->predio);
       return;
     }
     else
@@ -70,5 +71,68 @@ void Verificar(char *nomeArquivo,FILE *abrArq){
      printf("\nArquivo aberto com sucesso!\n\n");
      return;
 
+}
+
+//Mostrar arvore
+void mostrarArvore(no *raiz){
+
+        if(raiz == NULL){
+          return;	
+         }
+           
+        mostrarArvore(raiz->esq);
+        printf("%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        mostrarArvore(raiz->dir);
+}
+
+//Procedimento para mostrar as árvores
+void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
+	
+	printf("\nArquivo ordenado por código\n\n");
+    mostrarArvore(raizCod);
+    getch();
+    system("cls");
+    printf("\nArquivo ordenado por Nome\n\n");
+    mostrarArvore(raizNome);
+    getch();
+    system("cls");
+    printf("\nArquivo ordenado por Prédio\n\n");
+    mostrarArvore(raizPred);
+    getch();
+    system("cls");
+    return;
+}
+//Grava a arvore no arquivo
+void gravaArq(no *raiz,int op3){
+	
+	char nomeSalvar[60];
+	//Copiando os nomes para salvar os arquivos de acordo com o valor da variavel op3 passado
+	if(op3==1){
+	   strcpy(nomeSalvar,"Arquivo Ordenado por Codigo.txt");
+	}
+	 else if(op3==2){
+	 	strcpy(nomeSalvar,"Arquivo Ordenado por Nome.txt");
+	 }
+	 else if(op3==3){
+	 	strcpy(nomeSalvar,"Arquivo Ordenado por Predio.txt");
+	 }
+	
+	FILE *arqSaida;
+	arqSaida=fopen(nomeSalvar,"w");
+		
+		if(raiz == NULL){
+          fclose(arqSaida);	
+          if(arqSaida==NULL){
+        	 printf("\nArquivo %s Gravado\n\n",nomeSalvar);
+          }
+		  return;
+		  
+        }
+           
+        gravaArq(raiz->esq,op3);
+        fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        gravaArq(raiz->dir,op3);
+        
+       
 }
 

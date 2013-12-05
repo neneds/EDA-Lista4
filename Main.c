@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -17,7 +18,7 @@ main () {
 	char bufferLeitura[1000];
 	char nomeArq[60];
 	int TotalCursos=0;
-	int op=0;
+	int op=0,ver=0;
 	char curso[60];
 	int codigo=0;
 	int predio=0;
@@ -83,14 +84,21 @@ int opcao=0;
 	       	  }
 	       	  case 2:{
 	       	  	 deletar(raizCod,raizNome,raizPred);
+	       	  	 //Pergunta se o usuário quer ver as arvores depois da exclusao
+                 printf("\nDeseja ver as árvores depois da exclusão? 1-Sim 2- Não\n\n");
+                 scanf("%d",&ver);
+                 if(ver==1){
+                 	imprimirArvores(raizCod,raizNome,raizPred);
+                 }
+                 ver=0;
 	       	  	 break;
 	       	  }
 	       	  case 3:{
 	       	  	
                  gravaArq(raizCod,1);
-                 gravaArq(raizNome,2);
-                 gravaArq(raizPred,3);
-	       	  	break;
+                 //gravaArq(raizNome,2);
+                 //gravaArq(raizPred,3);
+                 break;
 	       	  }
 			  
 			case -1:{
