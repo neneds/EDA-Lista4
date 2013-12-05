@@ -22,7 +22,7 @@ Código	Curso	Prédio
 51;	Eng. Computação;	291;
 40;	Eng. Mecânica;	635;
 56;	Geografia  Licenciatura;	822;
-29;	Eng. Mecânica Empresarial	357;
+29;	Eng. Mecânica Empresarial;	357;
 5;	Eng. Mecânica Naval;	102;
 86;	História  Licenciatura;	648;
 53;	Letras Português/Espanhol Diurno;	544;

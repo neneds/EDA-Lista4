@@ -28,33 +28,33 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
        else
        switch(op){
        	 case 1:{
-       	 	if(codigo< (*raiz)->valor) {   //O elemento a inserir é menor que o valor do elemento contido na raiz?
+       	 	if(codigo< (*raiz)->valor) {   //O valor do codigo a inserir é menor que o valor do codigo contido na raiz?
 	            inserirNo(&(*raiz)->esq,codigo,curso,predio,op);  //Recursividade vai alocar o nó a esquerda
 	            return;
             }
-             if(codigo> (*raiz)->valor) {//O elemento a inserir é maior que o valor do elemento contido na raiz?
+             if(codigo> (*raiz)->valor) {//O valor do codigo a inserir a inserir é maior que o valor do elemento contido na raiz?
 	            inserirNo(&(*raiz)->dir,codigo,curso,predio,op);
 	            return;
             }
        	 	break;
        	 }
        	 case 2:{
-       	 	if(strcmp(curso,(*raiz)->nome)<=0) {   //O elemento a inserir é menor que o valor do elemento contido na raiz?
+       	 	if(strcmp(curso,(*raiz)->nome)<=0) {   //O nome a inserir é menor em comparaçao de string que do nome contido na raiz?
 	            inserirNo(&(*raiz)->esq,codigo,curso,predio,op);  //Recursividade vai alocar o nó a esquerda
 	            return;
             }
-             if(strcmp(curso,(*raiz)->nome)>0) {//O elemento a inserir é maior que o valor do elemento contido na raiz?
+             if(strcmp(curso,(*raiz)->nome)>0) {//O elemento a inserir é maior em comparaçao de string que do nome contido na raiz?
 	            inserirNo(&(*raiz)->dir,codigo,curso,predio,op);
 	            return;
             }
        	 	break;
        	 }
        	 case 3:{
-       	 	if(predio< (*raiz)->predio) {   //O elemento a inserir é menor que o valor do elemento contido na raiz?
+       	 	if(predio< (*raiz)->predio) {   //O predio a inserir é menor que o valor do elemento contido na raiz?
 	            inserirNo(&(*raiz)->esq,codigo,curso,predio,op);  //Recursividade vai alocar o nó a esquerda
 	            return;
             }
-             if(predio> (*raiz)->predio) {//O elemento a inserir é maior que o valor do elemento contido na raiz?
+             if(predio> (*raiz)->predio) {//O predio a inserir é maior que o valor do elemento contido na raiz?
 	            inserirNo(&(*raiz)->dir,codigo,curso,predio,op);
 	            return;
             }
@@ -67,17 +67,17 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
 }
 
  
-no *DoisFilhos(no *root){
-            if(root==NULL) //É nulo
+no *DoisFilhos(no *raiz){
+            if(raiz==NULL) //É nulo
                 return NULL;
-            else if(root->esq == NULL) //A esquerda do subelemento é nula?
-                    return root;
+            else if(raiz->esq == NULL) //A esquerda do subelemento é nula?
+                    return raiz;
             else
-                return DoisFilhos(root->esq);
+                return DoisFilhos(raiz->esq);
 }
  
-void removerNo(no **raiz,int elemento)
-{
+void removerNo(no **raiz,int elemento){
+	
         if(elemento < (*raiz)->valor){
             removerNo(&(*raiz)->esq,elemento);
         }
@@ -123,14 +123,31 @@ no *busca(no *raiz,int codigo){
         return NULL;
           
 }
-//Busca
-void pesquisaOrdemSimetrica(no *raiz)
-{
-        if(raiz == NULL)
-            return;
-        pesquisaOrdemSimetrica(raiz->esq);
-        printf("%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
-        pesquisaOrdemSimetrica(raiz->dir);
+//Pesquisa por ordem simetrica
+void mostrarGravarArq(no *raiz,FILE *arqSaida){
+        if(raiz == NULL){
+          return;	
+        }
+           
+        mostrarGravarArq(raiz->esq,arqSaida);
+        fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        mostrarGravarArq(raiz->dir,arqSaida);
 }
-
+//Gravar  o arquivo
+void gravar(no *raizCod,no *raizNome,no *raizPred){
+	//Declaração de variaveis
+	char nomeArquivo[50];
+	
+	FILE *arqSaida;
+	arqSaida=fopen(nomeArquivo,"w");
+    strcpy(nomeArquivo,"Ordenado por Curso.txt");
+    mostrarGravarArq(raizCod,arqSaida);
+    strcpy(nomeArquivo,"Ordenado por Nome.txt");
+    mostrarGravarArq(raizNome,arqSaida);
+    strcpy(nomeArquivo,"Ordenado por Predio.txt");
+    mostrarGravarArq(raizPred,arqSaida);
+    fclose(arqSaida);
+    getch();
+		
+}
 

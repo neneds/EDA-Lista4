@@ -2,31 +2,10 @@
 #include<stdlib.h>
 #include<string.h>
 #include<locale.h>
-#include<windows.h>
-#include "tratamento.h"
-#include "arvore_abp.c"
+#include "opcoes.c"
 
 
-void pesquisaCod(no *raizCod){
-    //Declaração de variaveis
-    char bufferLeitura[500];
-    int codPesq=0;
-    no *resultado;
- 
-	printf("\nDigite o código a ser pesquisado:\n\n");
-    scanf("%d",&codPesq);
-    resultado=busca(raizCod,codPesq);
-    if(resultado!=NULL){
-    printf("\nCódigo encontrado! %d\n",resultado->valor);
-    system("pause");
-    //Mostrar dados da pesquisa
-	printf("\n\nDados encontrados:\n\n");
-	printf("\n%d\t%s\t%d\n",resultado->valor,resultado->nome,resultado->predio);
-	system("pause");
-	return;	
-    }
-  
-}
+
 
 main () {
 	
@@ -38,7 +17,6 @@ main () {
 	char bufferLeitura[1000];
 	char nomeArq[60];
 	int TotalCursos=0;
-	long int posicao=0;
 	int op=0;
 	char curso[60];
 	int codigo=0;
@@ -57,38 +35,31 @@ main () {
 	gets(nomeArq);
 	arqTex=fopen(nomeArq,"r");
 	Verificar(nomeArq,arqTex);//Verifica se o arquivo foi aberto
+	
 	//Ver quantos codigos foram lidos
 	fgets(bufferLeitura,1000,arqTex);//Desprezar o cabeçalho
 	while(fgets(bufferLeitura,1000,arqTex) != NULL){
 		TotalCursos++;
 	}
-	//Alocando memoria 
 	printf("\nQuantidade de Cursos Lidos: %d\n\n\n",TotalCursos);
-	rewind(arqTex);
+	rewind(arqTex); //Voltar o arquivo para o começo
+	getch();
+	
 	//Ler o arquivo e passar os dados para a struct
 	fgets(bufferLeitura,1000,arqTex);//Desprezar o cabeçalho
 	while(!feof(arqTex)){
 		fgets(bufferLeitura,1000,arqTex);
-		//posicao=ftell(arqTex);
-		codigo=atoi(strtok(bufferLeitura, ";")); 
+		codigo=atoi(strtok(bufferLeitura, ";")); //O strtok lê até encontrar o ;
 	    strcpy(curso,strtok(NULL,";"));
 	    predio=atoi(strtok(NULL, ";")); 
-	    inserirNo(&raizCod,codigo,curso,predio,1);
+	    inserirNo(&raizCod,codigo,curso,predio,1);  //Inserir os dados lidos nas três arvores, o que as diferencia é o metodo de ordenação
 	    inserirNo(&raizNome,codigo,curso,predio,2);
 	    inserirNo(&raizPred,codigo,curso,predio,3);
 	}
 	rewind(arqTex);//Até aqui o arquivo foi lido somente
     system("pause");
     system("cls");
-    pesquisaOrdemSimetrica(raizCod);
-    system("pause");
-    system("cls");
-    pesquisaOrdemSimetrica(raizNome);
-    system("pause");
-    system("cls");
-    pesquisaOrdemSimetrica(raizPred);
-	system("pause");
-    system("cls");
+    
     
 //______________________________________________Função para o menu de opções
 //Declaração de variaveis
@@ -107,11 +78,11 @@ int opcao=0;
 	       	  	 break;
 	       	  }
 	       	  case 2:{
-	       	  	 // MunNome(TotalMun,indexNomeMun,arqMun,TotEstCod);
+	       	  	 deletar(raizCod,raizNome,raizPred);
 	       	  	 break;
 	       	  }
 	       	  case 3:{
-                 //ProcNumMunEst(arqMun,arqEst,indEstCnpj,indEstCod,TotalMun,TotEstCod,TotEstCnpj);
+                 gravar(raizCod,raizNome,raizPred);
 	       	  	break;
 	       	  }
 			  
@@ -123,7 +94,6 @@ int opcao=0;
 //Fim do menu
 
     printf("\n\n\nFim do programa!!!\n\n");
-    free(raizCod);
     system("pause");
 	fclose(arqTex);
 }
