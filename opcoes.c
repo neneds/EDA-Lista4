@@ -103,36 +103,15 @@ void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
     return;
 }
 //Grava a arvore no arquivo
-void gravaArq(no *raiz,int op3){
+void gravaArq(no *raiz,FILE *arqSaida){
 	
-	char nomeSalvar[60];
-	//Copiando os nomes para salvar os arquivos de acordo com o valor da variavel op3 passado
-	if(op3==1){
-	   strcpy(nomeSalvar,"Arquivo Ordenado por Codigo.txt");
-	}
-	 else if(op3==2){
-	 	strcpy(nomeSalvar,"Arquivo Ordenado por Nome.txt");
-	 }
-	 else if(op3==3){
-	 	strcpy(nomeSalvar,"Arquivo Ordenado por Predio.txt");
-	 }
-	
-	FILE *arqSaida;
-	arqSaida=fopen(nomeSalvar,"w");
-		
 		if(raiz == NULL){
-          fclose(arqSaida);	
-          if(arqSaida==NULL){
-        	 printf("\nArquivo %s Gravado\n\n",nomeSalvar);
-          }
-		  return;
-		  
-        }
+         return;
+		}
            
-        gravaArq(raiz->esq,op3);
+        gravaArq(raiz->esq,arqSaida);
         fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
-        gravaArq(raiz->dir,op3);
+        gravaArq(raiz->dir,arqSaida);
         
-       
 }
 

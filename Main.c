@@ -94,8 +94,18 @@ int opcao=0;
 	       	  	 break;
 	       	  }
 	       	  case 3:{
-	       	  	
-                 gravaArq(raizCod,1);
+	       	  	 char nomeCod[60];
+	       	  	 strcpy(nomeCod,"Arquivo Ordenado por Codigo.txt");
+	       	  	 char nomeNome[60];
+	       	  	 strcpy(nomeNome,"Arquivo Ordenado por Nome.txt");
+	       	  	 char nomePred[60];
+	       	  	 strcpy(nomePred,"Arquivo Ordenado por Predio.txt");
+	       	  	 
+	       	  	 FILE *arqSaida;
+	       	  	 //Para gravar o arquivo ordenado Por códigos
+	             arqSaida=fopen(nomeCod,"w");
+                 gravaArq(raizCod,arqSaida);
+                 fclose(arqSaida);
                  //gravaArq(raizNome,2);
                  //gravaArq(raizPred,3);
                  break;
