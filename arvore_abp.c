@@ -104,7 +104,7 @@ void removerNo(no **raiz,int elemento){
 //Procedimento para remover nó de nome
 void removerNoNome(no **raizNome,char nome[]){
 	
-        if(strcmp(nome,(*raizNome)->nome) <=0){
+        if(strcmp(nome,(*raizNome)->nome) <0){
             removerNoNome(&(*raizNome)->esq,nome);
         }
         else if(strcmp(nome,(*raizNome)->nome)>0){

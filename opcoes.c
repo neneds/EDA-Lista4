@@ -34,7 +34,7 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
     //Se a posicao existe na arvore de códigos
     if(noPesqCod!=NULL){
       removerNo(&raizCod,codPesq);
-      //removerNoNome(&raizNome,nomePesq);
+      removerNoNome(&raizNome,nomePesq);
       removerNoPred(&raizPred,noPesqCod->predio);
       return;
     }

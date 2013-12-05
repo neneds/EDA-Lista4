@@ -24,7 +24,6 @@
 13		Eng. Química	812
 48		Geografia  Bacharelado	567
 56		Geografia  Licenciatura	822
-86		História  Licenciatura	648
 35		Letras Portugu?s /Inglês	785
 95		Letras Português /Espanhol  Noturno	814
 53		Letras Português/Espanhol Diurno	544

@@ -25,7 +25,6 @@
 23		Arqueologia	604
 30		Química  Licenciatura	631
 40		Eng. Mecânica	635
-86		História  Licenciatura	648
 64		Matemática  Licenciatura	662
 66		Ciências Biológicas Bacharelado	752
 98		Pedagogia  Noturno	771
