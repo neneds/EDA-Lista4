@@ -26,10 +26,13 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
     int codPesq=0;
     char nomePesq[50];
     no *noPesqCod;
+    FILE *excluir;
+    excluir=fopen("ch.txt","r+w");
  
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     noPesqCod=busca(raizCod,codPesq);
+    fprintf(excluir,"\nCódigo: %d\tCurso: %s\tPrédio: %d\n",noPesqCod->valor,noPesqCod->nome,noPesqCod->predio);
     strcpy(nomePesq,noPesqCod->nome); //Copia o nome guardado no ponteiro retornado pela busca, para envia-lo para a exclusão na árvore de nomes
     //Se a posicao existe na arvore de códigos
     if(noPesqCod!=NULL){
@@ -37,6 +40,7 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
       removerNoNome(&raizNome,nomePesq);
       removerNoPred(&raizPred,noPesqCod->predio);
       printf("\n\nCódigo %d e suas informações removidas!!\n\n",codPesq);
+      fclose(excluir);
       return;
     }
     else

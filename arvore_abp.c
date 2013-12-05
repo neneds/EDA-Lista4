@@ -56,10 +56,12 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
 	            inserirNo(&(*raiz)->esq,codigo,curso,predio,op);  //Recursividade vai alocar o nó a esquerda
 	            return;
             }
-             if(predio> (*raiz)->predio) {//O predio a inserir é maior que o valor do elemento contido na raiz?
+            else
+              //O if foi retirado para pegar valores de prédio iguais
+             //if(predio> (*raiz)->predio) {//O predio a inserir é maior que o valor do elemento contido na raiz?
 	            inserirNo(&(*raiz)->dir,codigo,curso,predio,op);
 	            return;
-            }
+            
        	 	break;
        	 }
        };
