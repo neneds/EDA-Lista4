@@ -109,6 +109,7 @@ void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
 void gravaArq(no *raiz,FILE *arqSaida){
 	
 		if(raiz == NULL){
+		  printf("\nArquivo gravado!!\n");
          return;
 		}
         //Enquanto a raiz não for nula  

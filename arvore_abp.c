@@ -64,8 +64,6 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
        	 }
        };
 
-        //Se o elemento já existir na arvore ele vai passar por todos os if's
-       // printf("Elemento %d ja existe na arvore.\n",codigo);
 }
 
 //Para o caso da raiz ter dois filhos não nulos 

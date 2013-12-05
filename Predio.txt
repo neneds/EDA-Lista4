@@ -1,0 +1,78 @@
+
+Código: 49	Curso: 	Eng. Civil Empresarial	Prédio: 101
+
+Código: 5	Curso: 	Eng. Mecânica Naval	Prédio: 102
+
+Código: 1	Curso: 	Oceanologia	Prédio: 103
+
+Código: 4	Curso: 	Ciências Biológicas  Licenciatura	Prédio: 108
+
+Código: 21	Curso: 	Eng. Automaçãoo	Prédio: 127
+
+Código: 20	Curso: 	Enfermagem	Prédio: 129
+
+Código: 92	Curso: 	Sistemas de Informação	Prédio: 131
+
+Código: 38	Curso: 	Ciências Contábeis	Prédio: 142
+
+Código: 26	Curso: 	Letras/Português	Prédio: 143
+
+Código: 22	Curso: 	Eng. Alimentos	Prédio: 255
+
+Código: 9	Curso: 	Artes Visuais	Prédio: 274
+
+Código: 51	Curso: 	Eng. Computação	Prédio: 291
+
+Código: 77	Curso: 	Biblioteconomia	Prédio: 324
+
+Código: 27	Curso: 	Eng. Bioquímica	Prédio: 337
+
+Código: 29	Curso: 	Eng. Mecânica Empresarial	Prédio: 357
+
+Código: 57	Curso: 	Medicina	Prédio: 361
+
+Código: 31	Curso: 	Direito  Diurno	Prédio: 367
+
+Código: 45	Curso: 	Educação Física	Prédio: 469
+
+Código: 53	Curso: 	Letras Português/Espanhol Diurno	Prédio: 544
+
+Código: 55	Curso: 	Administração	Prédio: 566
+
+Código: 48	Curso: 	Geografia  Bacharelado	Prédio: 567
+
+Código: 96	Curso: 	Arquivologia	Prédio: 576
+
+Código: 76	Curso: 	Eng. Civil	Prédio: 580
+
+Código: 90	Curso: 	Pedagogia  Diurno	Prédio: 581
+
+Código: 23	Curso: 	Arqueologia	Prédio: 604
+
+Código: 30	Curso: 	Química  Licenciatura	Prédio: 631
+
+Código: 40	Curso: 	Eng. Mecânica	Prédio: 635
+
+Código: 86	Curso: 	História  Licenciatura	Prédio: 648
+
+Código: 64	Curso: 	Matemática  Licenciatura	Prédio: 662
+
+Código: 66	Curso: 	Ciências Biológicas Bacharelado	Prédio: 752
+
+Código: 98	Curso: 	Pedagogia  Noturno	Prédio: 771
+
+Código: 35	Curso: 	Letras Portugu?s /Inglês	Prédio: 785
+
+Código: 13	Curso: 	Eng. Química	Prédio: 812
+
+Código: 95	Curso: 	Letras Português /Espanhol  Noturno	Prédio: 814
+
+Código: 56	Curso: 	Geografia  Licenciatura	Prédio: 822
+
+Código: 3	Curso: 	Tecnologia em Gestão Ambiental	Prédio: 850
+
+Código: 60	Curso: 	Eng. Civil, Costeira e Portuária	Prédio: 929
+
+Código: 50	Curso: 	Psicologia	Prédio: 945
+
+Código: 46	Curso: 	Direito  Noturno	Prédio: 995
