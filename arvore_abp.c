@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Estrutura dos nós 
+//Estrutura dos nós da arvore
 typedef struct no{
         struct no *esq;
         struct no *dir;
@@ -20,13 +20,15 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
             aux->predio=predio;
             aux->dir = aux->esq = NULL;  //Os nós da direita e da esquerda são nulos para permitir a inserção neles depois.
             *raiz = aux;  //A raiz vira auxiliar;
-            //printf("Elemento %d\t %s\t %d foi inserido com sucesso.\n",aux->valor,aux->nome,aux->predio);
+            //printf("Elemento %d\t %s\t %d foi inserido com sucesso.\n",aux->valor,aux->nome,aux->predio); //Mostrar elemento inserido
             return;
         }
        //Para inserir elementos com uma raiz não nula
-       //Para a arvore de códigos
+       
        else
+       //Opcoes para inserçao nas três árvores distintas
        switch(op){
+       	//Para a arvore de códigos
        	 case 1:{
        	 	if(codigo< (*raiz)->valor) {   //O valor do codigo a inserir é menor que o valor do codigo contido na raiz?
 	            inserirNo(&(*raiz)->esq,codigo,curso,predio,op);  //Recursividade vai alocar o nó a esquerda
@@ -76,19 +78,19 @@ no *DoisFilhos(no *raiz){
                 return DoisFilhos(raiz->esq);
 }
 //Procedimento para remover nó de codigo 
-void removerNo(no **raiz,int elemento){
+void removerNoCod(no **raiz,int elemento){
 	
         if(elemento < (*raiz)->valor){
-            removerNo(&(*raiz)->esq,elemento);
+            removerNoCod(&(*raiz)->esq,elemento);
         }
         else if(elemento > (*raiz)->valor){
-            removerNo(&(*raiz)->dir,elemento);
+            removerNoCod(&(*raiz)->dir,elemento);
         }
         else if((*raiz)->esq!=NULL && (*raiz)->dir!=NULL){//No caso de um nó ter subfilhos dos dois lados 
             no *aux= NULL;
             aux = DoisFilhos((*raiz)->dir); //Chama o procedimento dois filhos e aux recebe o valor de resultado
             (*raiz)->valor = aux->valor;   //Substitui o velor pelo valor da var auxilair
-            removerNo(&(*raiz)->dir,(*raiz)->valor); //Remove a raiz
+            removerNoCod(&(*raiz)->dir,(*raiz)->valor); //Remove a raiz
         }
         else {
             no *aux = (*raiz);

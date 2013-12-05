@@ -95,11 +95,11 @@ int opcao=0;
 	       	  }
 	       	  case 3:{
 	       	  	 char nomeCod[60];
-	       	  	 strcpy(nomeCod,"Arquivo Ordenado por Codigo.txt");
+	       	  	 strcpy(nomeCod,"Codigo.txt");
 	       	  	 char nomeNome[60];
-	       	  	 strcpy(nomeNome,"Arquivo Ordenado por Nome.txt");
+	       	  	 strcpy(nomeNome,"Nome.txt");
 	       	  	 char nomePred[60];
-	       	  	 strcpy(nomePred,"Arquivo Ordenado por Predio.txt");
+	       	  	 strcpy(nomePred,"Predio.txt");
 	       	  	 
 	       	  	 FILE *arqSaida;
 	       	  	 //Para gravar o arquivo ordenado Por códigos

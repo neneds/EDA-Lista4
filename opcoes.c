@@ -30,12 +30,13 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     noPesqCod=busca(raizCod,codPesq);
-    strcpy(nomePesq,noPesqCod->nome);
+    strcpy(nomePesq,noPesqCod->nome); //Copia o nome guardado no ponteiro retornado pela busca, para envia-lo para a exclusão na árvore de nomes
     //Se a posicao existe na arvore de códigos
     if(noPesqCod!=NULL){
-      removerNo(&raizCod,codPesq);
+      removerNoCod(&raizCod,codPesq);
       removerNoNome(&raizNome,nomePesq);
       removerNoPred(&raizPred,noPesqCod->predio);
+      printf("\n\nCódigo %d e suas informações removidas!!\n\n",codPesq);
       return;
     }
     else
@@ -75,7 +76,7 @@ void Verificar(char *nomeArquivo,FILE *abrArq){
 
 }
 
-//Mostrar arvore
+//Mostrar arvores
 void mostrarArvore(no *raiz){
 
         if(raiz == NULL){
@@ -89,7 +90,7 @@ void mostrarArvore(no *raiz){
 
 //Procedimento para mostrar as árvores
 void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
-	
+	system("cls");
 	printf("\nArquivo ordenado por código\n\n");
     mostrarArvore(raizCod);
     getch();
@@ -110,9 +111,9 @@ void gravaArq(no *raiz,FILE *arqSaida){
 		if(raiz == NULL){
          return;
 		}
-           
+        //Enquanto a raiz não for nula  
         gravaArq(raiz->esq,arqSaida);
-        fprintf(arqSaida,"%d\t%s\t%d\n",raiz->valor,raiz->nome,raiz->predio);
+        fprintf(arqSaida,"\nCódigo: %d\tCurso: %s\tPrédio: %d\n",raiz->valor,raiz->nome,raiz->predio);
         gravaArq(raiz->dir,arqSaida);
         
 }
