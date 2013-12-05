@@ -1,3 +1,13 @@
+/*/
+Universidade de Brasília - FGA
+Disciplina: EDA
+Professor: Nilton
+Alunos: Dennis Lúcio Merli Rodrigues - 13/0044130  - GitHub: https://github.com/neneds
+        Iago Mendes
+        
+/*/
+
+
 //Arquivo com as funcoes e procedimentos para o funcionamento do programa
 #include "arvore_abp.c"
 
@@ -27,15 +37,15 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
     char nomePesq[50];
     no *noPesqCod;
     FILE *excluir;
-    excluir=fopen("ch.txt","r+w");
+    excluir=fopen("ch.txt","w"); //Pegar dados da posição excluida e armazenar no arquivo ch.txt
  
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     noPesqCod=busca(raizCod,codPesq);
-    fprintf(excluir,"\nCódigo: %d\tCurso: %s\tPrédio: %d\n",noPesqCod->valor,noPesqCod->nome,noPesqCod->predio);
-    strcpy(nomePesq,noPesqCod->nome); //Copia o nome guardado no ponteiro retornado pela busca, para envia-lo para a exclusão na árvore de nomes
     //Se a posicao existe na arvore de códigos
     if(noPesqCod!=NULL){
+      fprintf(excluir,"\nCódigo: %d\tCurso: %s\tPrédio: %d\n",noPesqCod->valor,noPesqCod->nome,noPesqCod->predio);
+      strcpy(nomePesq,noPesqCod->nome); //Copia o nome guardado no ponteiro retornado pela busca, para envia-lo para a exclusão na árvore de nomes
       removerNoCod(&raizCod,codPesq);
       removerNoNome(&raizNome,nomePesq);
       removerNoPred(&raizPred,noPesqCod->predio);
@@ -44,7 +54,9 @@ void deletar(no *raizCod,no *raizNome,no *raizPred){
       return;
     }
     else
-    printf("\nA pesquisa não foi válida!!!\n\n");
+    printf("\nPesquisa inválida!\n\n");
+    fclose(excluir);
+    getch();
     return;
 }
 
@@ -113,13 +125,14 @@ void imprimirArvores(no *raizCod,no *raizNome,no *raizPred){
 void gravaArq(no *raiz,FILE *arqSaida){
 	
 		if(raiz == NULL){
-		  printf("\nArquivo gravado!!\n");
-         return;
+		  return;
 		}
         //Enquanto a raiz não for nula  
         gravaArq(raiz->esq,arqSaida);
         fprintf(arqSaida,"\nCódigo: %d\tCurso: %s\tPrédio: %d\n",raiz->valor,raiz->nome,raiz->predio);
         gravaArq(raiz->dir,arqSaida);
         
+        printf("\nArquivo gravado!!\n");
+        return;
 }
 

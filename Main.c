@@ -1,4 +1,11 @@
-
+/*/
+Universidade de Brasília - FGA
+Disciplina: EDA
+Professor: Nilton
+Alunos: Dennis Lúcio Merli Rodrigues - 13/0044130  - GitHub: https://github.com/neneds
+        Iago Mendes
+        
+/*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -34,6 +41,8 @@ main () {
 	//FilePointer para o arquivo de texto 
 	FILE *arqTex;
 	fflush(stdin);
+	printf("\n\nEDA - LISTA DE EXERCÍCIOS 04 ÁRVORES BINÁRIAS DE PESQUISA (ABP)\n");
+	printf("\n\nAutores: Dennis Lúcio Merli (13/0044130) |  Iago Mendes\n\n\n");
 	printf("\nDigite o nome do arquivo a ser aberto e sua extensão:");
 	gets(nomeArq);
 	arqTex=fopen(nomeArq,"r");

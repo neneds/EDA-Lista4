@@ -15,8 +15,6 @@ Código: 66	Curso: 	Ciências Biológicas Bacharelado	Prédio: 752
 
 Código: 38	Curso: 	Ciências Contábeis	Prédio: 142
 
-Código: 88	Curso: 	Ciências Econômicas	Prédio: 580
-
 Código: 31	Curso: 	Direito  Diurno	Prédio: 367
 
 Código: 46	Curso: 	Direito  Noturno	Prédio: 995
@@ -32,8 +30,6 @@ Código: 21	Curso: 	Eng. Automaçãoo	Prédio: 127
 Código: 27	Curso: 	Eng. Bioquímica	Prédio: 337
 
 Código: 76	Curso: 	Eng. Civil	Prédio: 580
-
-Código: 49	Curso: 	Eng. Civil Empresarial	Prédio: 101
 
 Código: 60	Curso: 	Eng. Civil, Costeira e Portuária	Prédio: 929
 

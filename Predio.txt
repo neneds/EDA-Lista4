@@ -43,8 +43,6 @@ Código: 48	Curso: 	Geografia  Bacharelado	Prédio: 567
 
 Código: 96	Curso: 	Arquivologia	Prédio: 576
 
-Código: 76	Curso: 	Eng. Civil	Prédio: 580
-
 Código: 90	Curso: 	Pedagogia  Diurno	Prédio: 581
 
 Código: 23	Curso: 	Arqueologia	Prédio: 604

@@ -1,3 +1,13 @@
+/*/
+Universidade de Brasília - FGA
+Disciplina: EDA
+Professor: Nilton
+Alunos: Dennis Lúcio Merli Rodrigues - 13/0044130  - GitHub: https://github.com/neneds
+        Iago Mendes
+        
+/*/
+
+//Procedimentos e funçoes para uma árvore binaria de pesquisa
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -175,8 +185,7 @@ no *busca(no *raiz,int codigo){
         	
         }
         printf("\nCódigo não encontrado!!!\n\n");
-        getch();
-        return NULL;
+        return;
           
 }
 

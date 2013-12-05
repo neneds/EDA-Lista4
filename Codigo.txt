@@ -61,13 +61,9 @@ Código: 64	Curso: 	Matemática  Licenciatura	Prédio: 662
 
 Código: 66	Curso: 	Ciências Biológicas Bacharelado	Prédio: 752
 
-Código: 76	Curso: 	Eng. Civil	Prédio: 580
-
 Código: 77	Curso: 	Biblioteconomia	Prédio: 324
 
 Código: 86	Curso: 	História  Licenciatura	Prédio: 648
-
-Código: 88	Curso: 	Ciências Econômicas	Prédio: 580
 
 Código: 90	Curso: 	Pedagogia  Diurno	Prédio: 581
 
