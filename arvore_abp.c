@@ -66,7 +66,7 @@ void inserirNo(no **raiz, int codigo,char curso[],int predio,int op){//Recebe o 
        // printf("Elemento %d ja existe na arvore.\n",codigo);
 }
 
- 
+//Para o caso da raiz ter dois filhos não nulos 
 no *DoisFilhos(no *raiz){
             if(raiz==NULL) //É nulo
                 return NULL;
@@ -75,7 +75,7 @@ no *DoisFilhos(no *raiz){
             else
                 return DoisFilhos(raiz->esq);
 }
- 
+//Procedimento para remover nó de codigo 
 void removerNo(no **raiz,int elemento){
 	
         if(elemento < (*raiz)->valor){
@@ -101,7 +101,61 @@ void removerNo(no **raiz,int elemento){
             free(aux);
         }
 }
- 
+//Procedimento para remover nó de nome
+void removerNoNome(no **raizNome,char nome[]){
+	
+        if(strcmp(nome,(*raizNome)->nome) <=0){
+            removerNoNome(&(*raizNome)->esq,nome);
+        }
+        else if(strcmp(nome,(*raizNome)->nome)>0){
+            removerNoNome(&(*raizNome)->dir,nome);
+        }
+        else if((*raizNome)->esq!=NULL && (*raizNome)->dir!=NULL){//No caso de um nó ter subfilhos dos dois lados 
+            no *aux= NULL;
+            aux = DoisFilhos((*raizNome)->dir); //Chama o procedimento dois filhos e aux recebe o valor de resultado
+            strcpy(aux->nome,(*raizNome)->nome);  //Substitui o velor pelo valor da var auxiliar
+            removerNoNome(&(*raizNome)->dir,(*raizNome)->nome); //Remove a raiz
+        }
+        else {
+            no *aux = (*raizNome);
+            if((*raizNome)->esq==NULL) {
+                (*raizNome) = (*raizNome)->dir;
+            }
+            else {
+                *raizNome = (*raizNome)->esq;
+            }
+            free(aux);
+        }
+}//Fim do procedimento 
+
+//Procedimento para remover nó de codigo 
+void removerNoPred(no **raizPred,int predio){
+	
+        if(predio < (*raizPred)->predio){
+            removerNoPred(&(*raizPred)->esq,predio);
+        }
+        else if(predio > (*raizPred)->predio){
+            removerNoPred(&(*raizPred)->dir,predio);
+        }
+        else if((*raizPred)->esq!=NULL && (*raizPred)->dir!=NULL){//No caso de um nó ter subfilhos dos dois lados 
+            no *aux= NULL;
+            aux = DoisFilhos((*raizPred)->dir); //Chama o procedimento dois filhos e aux recebe o valor de resultado
+            (*raizPred)->predio = aux->predio;   //Substitui o velor pelo valor da var auxilair
+            removerNoPred(&(*raizPred)->dir,(*raizPred)->predio); //Remove a raizPred
+        }
+        else {
+            no *aux = (*raizPred);
+            if((*raizPred)->esq==NULL) {
+                (*raizPred) = (*raizPred)->dir;
+            }
+            else {
+                *raizPred = (*raizPred)->esq;
+            }
+            free(aux);
+        }
+}//Fim do procedimento
+
+
 no *busca(no *raiz,int codigo){
 	no *auxiliar;
 	auxiliar=raiz;

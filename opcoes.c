@@ -24,16 +24,18 @@ void pesquisaCod(no *raizCod){
 void deletar(no *raizCod,no *raizNome,no *raizPred){
 	//Declaração de variaveis
     int codPesq=0;
+    char nomePesq[50];
     no *noPesqCod;
  
 	printf("\nDigite o código a ser pesquisado:\n\n");
     scanf("%d",&codPesq);
     noPesqCod=busca(raizCod,codPesq);
-    //noPesqPred=busca(raizCod,codPesq);
+    strcpy(nomePesq,noPesqCod->nome);
+    //Se a posicao existe na arvore de códigos
     if(noPesqCod!=NULL){
       removerNo(&raizCod,codPesq);
-      //removerNo(&raizNome,codPesq);
-      //removerNo(&raizPred,noPesqCod->predio);
+      //removerNoNome(&raizNome,nomePesq);
+      removerNoPred(&raizPred,noPesqCod->predio);
       return;
     }
     else

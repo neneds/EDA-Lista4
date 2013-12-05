@@ -31,7 +31,6 @@
 66		Ciências Biológicas Bacharelado	752
 76		Eng. Civil	580
 77		Biblioteconomia	324
-86		História  Licenciatura	648
 88		Ciências Econômicas	580
 90		Pedagogia  Diurno	581
 92		Sistemas de Informação	131
